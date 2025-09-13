@@ -22,7 +22,7 @@ import {
 import { useToast } from "@/components/ui/use-toast";
 import client from "../client";
 import ParticipantGrid from "../components/ParticipantGrid";
-// import ChatPanel from "../components/ChatPanel";
+import SimpleChatPanel from "../components/SimpleChatPanel";
 import SettingsPanel from "../components/SettingsPanel";
 import ParticipantManagement from "../components/ParticipantManagement";
 
@@ -625,7 +625,7 @@ export default function MeetingPage() {
             </Button>
           )}
           {/* Debug info */}
-          {import.meta.env.DEV && (
+          {typeof window !== 'undefined' && (
             <div className="text-xs text-gray-400 ml-2">
               Host: {currentParticipant?.isHost ? 'Yes' : 'No'}
             </div>
@@ -660,10 +660,11 @@ export default function MeetingPage() {
         {/* Side Panels */}
         {showChat && (
           <div className="w-80 bg-white border-l">
-            <div className="p-4">
-              <h3>Chat temporarily disabled</h3>
-              <button onClick={() => setShowChat(false)}>Close</button>
-            </div>
+            <SimpleChatPanel
+              roomId={roomId!}
+              participantName={currentParticipant?.name || "Anonymous"}
+              onClose={() => setShowChat(false)}
+            />
           </div>
         )}
 
