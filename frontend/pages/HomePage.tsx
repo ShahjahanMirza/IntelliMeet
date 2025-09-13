@@ -60,9 +60,9 @@ export default function HomePage() {
       navigate(`/meeting/${room.id}`, {
         state: {
           participantName: "Host",
-          password: formData.password.trim() || undefined,
+          password: formData.password?.trim() || undefined,
           isCreator: true,
-          creatorId: room.creatorId
+          creatorId: (room as any).creatorId
         }
       });
     } catch (error) {
@@ -144,13 +144,13 @@ export default function HomePage() {
     try {
       const joinData = {
         ...joinFormData,
-        password: joinFormData.password.trim() || undefined
+        password: joinFormData.password?.trim() || undefined
       };
       await client.joinRoom(joinData);
       navigate(`/meeting/${joinFormData.roomId}`, {
         state: {
           participantName: joinFormData.participantName,
-          password: joinFormData.password.trim() || undefined
+          password: joinFormData.password?.trim() || undefined
         }
       });
     } catch (error: any) {

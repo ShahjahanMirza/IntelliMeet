@@ -22,7 +22,7 @@ import {
 import { useToast } from "@/components/ui/use-toast";
 import client from "../client";
 import ParticipantGrid from "../components/ParticipantGrid";
-import ChatPanel from "../components/ChatPanel";
+// import ChatPanel from "../components/ChatPanel";
 import SettingsPanel from "../components/SettingsPanel";
 import ParticipantManagement from "../components/ParticipantManagement";
 
@@ -445,9 +445,7 @@ export default function MeetingPage() {
         console.log("Requesting screen share...");
 
         const screenStream = await navigator.mediaDevices.getDisplayMedia({
-          video: {
-            mediaSource: 'screen'
-          },
+          video: true,
           audio: {
             echoCancellation: true,
             noiseSuppression: true,
@@ -627,7 +625,7 @@ export default function MeetingPage() {
             </Button>
           )}
           {/* Debug info */}
-          {process.env.NODE_ENV === 'development' && (
+          {import.meta.env.DEV && (
             <div className="text-xs text-gray-400 ml-2">
               Host: {currentParticipant?.isHost ? 'Yes' : 'No'}
             </div>
@@ -652,21 +650,20 @@ export default function MeetingPage() {
           <ParticipantGrid
             participants={participants}
             localVideoRef={localVideoRef}
-            localParticipantName={currentParticipant.name}
+            localParticipantName={currentParticipant?.name || ""}
             isLocalVideoEnabled={isVideoEnabled}
             isLocalAudioEnabled={isAudioEnabled}
-            isLocalHost={currentParticipant.isHost}
+            isLocalHost={currentParticipant?.isHost || false}
           />
         </div>
 
         {/* Side Panels */}
         {showChat && (
           <div className="w-80 bg-white border-l">
-            <ChatPanel
-              roomId={roomId!}
-              participantName={currentParticipant?.name || "Anonymous"}
-              onClose={() => setShowChat(false)}
-            />
+            <div className="p-4">
+              <h3>Chat temporarily disabled</h3>
+              <button onClick={() => setShowChat(false)}>Close</button>
+            </div>
           </div>
         )}
 

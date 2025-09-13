@@ -21,8 +21,9 @@
     "tailwindcss": "^4.1.12"
   },
   "devDependencies": {
-    "@tailwindcss/oxide": "^4.1.12",
-    "@types/react": "^19.1.12",
+    "@tailwindcss/oxide": "^4.1.13",
+    "@types/node": "^20.14.0",
+    "@types/react": "^19.1.13",
     "@types/react-dom": "^19.1.9",
     "@vitejs/plugin-react": "^4.7.0",
     "lightningcss": "^1.30.1",
