@@ -1,0 +1,35 @@
+{
+  "name": "video-meeting-backend",
+  "version": "1.0.0",
+  "description": "Express-based backend for video meeting platform",
+  "main": "dist/server.js",
+  "type": "module",
+  "scripts": {
+    "dev": "tsx watch src/server.ts",
+    "build": "tsc",
+    "start": "node dist/server.js",
+    "db:migrate": "node dist/scripts/migrate.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2",
+    "cors": "^2.8.5",
+    "helmet": "^7.1.0",
+    "morgan": "^1.10.0",
+    "pg": "^8.12.0",
+    "sqlite3": "^5.1.7",
+    "ws": "^8.18.0",
+    "dotenv": "^16.4.5",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.21",
+    "@types/cors": "^2.8.17",
+    "@types/morgan": "^1.9.9",
+    "@types/pg": "^8.11.6",
+    "@types/ws": "^8.5.12",
+    "@types/node": "^20.14.0",
+    "@vercel/node": "^3.0.21",
+    "typescript": "^5.5.2",
+    "tsx": "^4.16.2"
+  }
+}

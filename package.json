@@ -1,0 +1,27 @@
+{
+  "name": "video-meeting-platform",
+  "version": "1.0.0",
+  "description": "A video meeting platform with Express backend and React frontend",
+  "type": "module",
+  "packageManager": "npm",
+  "workspaces": [
+    "backend",
+    "frontend"
+  ],
+  "scripts": {
+    "dev": "concurrently \"npm run backend:dev\" \"npm run frontend:dev\"",
+    "backend:dev": "cd backend-new && npm run dev",
+    "frontend:dev": "cd frontend && npm run dev",
+    "build": "npm run backend:build && npm run frontend:build",
+    "backend:build": "cd backend-new && npm run build",
+    "frontend:build": "cd frontend && npm run build",
+    "start": "npm run backend:start",
+    "backend:start": "cd backend-new && npm run start",
+    "test": "cd backend-new && node test.js",
+    "db:migrate": "cd backend-new && npm run db:migrate",
+    "postinstall": "npm install --prefix backend-new && npm install --prefix frontend"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
